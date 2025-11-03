@@ -1,0 +1,84 @@
+name: ROC TS-WF801 Compatible Gas Boiler
+products:
+  - id: qmnaofixly5m5kei
+    manufacturer: ROC
+    model: TS-WF801
+entities:
+  - entity: climate
+    dps:
+      - id: 101
+        type: boolean
+        name: hvac_mode
+        mapping:
+          - dps_val: false
+            value: "off"
+          - dps_val: true
+            value: heat
+      - id: 109
+        type: integer
+        name: temperature
+        unit: C
+        range:
+          min: 30
+          max: 85
+      - id: 105
+        type: integer
+        name: current_temperature
+        unit: C
+      - id: 125
+        type: integer
+        name: hvac_action
+        mapping:
+          - dps_val: 1
+            value: heating
+          - dps_val: 2
+            value: idle
+      - id: 123
+        type: string
+        name: preset_mode
+        mapping:
+          - dps_val: Normal
+            value: comfort
+          - dps_val: GoOut
+            value: away
+          - dps_val: Economic
+            value: eco
+          - dps_val: Sleep
+            value: sleep
+          - dps_val: timing
+            value: schedule
+  - entity: select
+    name: Season mode
+    dps:
+      - id: 102
+        type: string
+        name: option
+        mapping:
+          - dps_val: winnter
+            value: Winter
+          - dps_val: summer
+            value: Summer
+  - entity: binary_sensor
+    class: problem
+    category: diagnostic
+    dps:
+      - id: 103
+        type: bitfield
+        name: sensor
+        mapping:
+          - dps_val: 0
+            value: false
+          - value: true
+      - id: 103
+        type: bitfield
+        name: fault_code
+  - entity: lock
+    name: Child lock
+    category: config
+    dps:
+      - id: 124
+        type: boolean
+        optional: true
+        name: lock
+
+
